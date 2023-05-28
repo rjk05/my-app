@@ -8,6 +8,15 @@ function LocationTracker() {
   const [map, setMap] = useState(null);
 
   useEffect(() => {
+    
+    const updateMarkerPosition = (lat, lng) => {
+    if (map) {
+      map.panTo([lat, lng]);
+
+      const marker = L.marker([lat, lng]);
+      marker.addTo(map);
+    }
+  };
     if (navigator.geolocation) {
       navigator.geolocation.watchPosition(
         (position) => {
