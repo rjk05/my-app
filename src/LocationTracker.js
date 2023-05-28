@@ -23,13 +23,13 @@ function LocationTracker() {
     } else {
       console.log('Geolocation is not supported by this browser.');
     }
-  }, [updateMarkerPosition]);
+  }, []);
 
   useEffect(() => {
     if (latitude && longitude) {
       initializeMap();
     }
-  }, [latitude, longitude, initializeMap]);
+  }, [latitude, longitude]);
 
   const initializeMap = () => {
     const mapInstance = L.map('map').setView([latitude, longitude], 13);
