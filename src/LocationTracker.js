@@ -8,15 +8,6 @@ function LocationTracker() {
   const [map, setMap] = useState(null);
 
   useEffect(() => {
-    
-    const updateMarkerPosition = (lat, lng) => {
-    if (map) {
-      map.panTo([lat, lng]);
-
-      const marker = L.marker([lat, lng]);
-      marker.addTo(map);
-    }
-  };
     if (navigator.geolocation) {
       navigator.geolocation.watchPosition(
         (position) => {
@@ -32,13 +23,13 @@ function LocationTracker() {
     } else {
       console.log('Geolocation is not supported by this browser.');
     }
-  }, [updateMarkerPosition]);
+  }, []);
 
   useEffect(() => {
     if (latitude && longitude) {
       initializeMap();
     }
-  }, [initializeMap ,latitude, longitude]);
+  }, [latitude, longitude]);
 
   const initializeMap = () => {
     const mapInstance = L.map('map').setView([latitude, longitude], 13);
